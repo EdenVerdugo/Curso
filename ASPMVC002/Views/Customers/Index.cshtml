@@ -1,0 +1,36 @@
+﻿@model IEnumerable<ASPMVC002.Models.Customer>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Customers</h2>
+
+@if (Model == null || !Model.Any())
+{
+    <p>Aun no hay clientes registrados</p>
+}
+else
+{
+    <table class="table table-sm table-hover">
+        <thead>
+            <tr>
+                <th>Customer</th>
+                <th>DiscountRate</th>
+            </tr>            
+        </thead>
+        <tbody>
+            @foreach (var c in Model)
+            {
+                <tr>
+                    <td>@Html.ActionLink(c.Name, "Details", "Customers", new { @Id = c.Id }, null) </td>
+                    <td>@c.MembershipType.DiscountRate%</td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+}
+
+
